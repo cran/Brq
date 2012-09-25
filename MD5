@@ -1,0 +1,14 @@
+d156311342dea7c2152f9b06a010865c *DESCRIPTION
+df390c53434517b304ac5db487184641 *NAMESPACE
+08ef33c6fe3e6a70c819db3523367fa3 *R/BAcrq.r
+71ef05625053c01f882bfcfd4932cc08 *R/Btopm.r
+8f2666b05937a667790ccb95c8506cfb *R/Topm.R
+7707fef4cebad92f24fffa9b4d988958 *R/brq.R
+13cbc42f60510687bc04466b6b611434 *R/summary.brq.R
+56ebdd97a409fe8393514293c91232dc *data/Body.rda
+0d80c11763fed7cbafd23dbbc4e3dea8 *man/BAcrq.Rd
+5590056cbe27c0603630a68804907a7c *man/Body.Rd
+bf447ced9db25169b5b5a96848f3332e *man/Btopm.Rd
+dca1f798cb00574b30be99985b4bd915 *man/Topm.Rd
+ff2cf1c3d3ffd3ffd42fe4ef74611ed3 *man/brq.Rd
+0d04f73d31fe6473a540e2f339e9602d *man/summary.brq.Rd
