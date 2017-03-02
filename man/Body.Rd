@@ -71,11 +71,11 @@ Heinz, G., Peterson, L.J., Johnson, R.W. and Kerk, C.J. (2003),
 \emph{Journal of Statistics Education }, 11.
 
 }
-\references{
+%\references{
 
-The information on this page has been taken from the web site 
-\url{http://www.amstat.org/publications/jse/datasets/body.txt}.
-The dataset is download from 
-\url{http://www.amstat.org/publications/jse/datasets/body.dat.txt}
-}
+%The information on this page has been taken from the web site 
+%\url{http://www.amstat.org/publications/jse/datasets/body.txt}.
+%The dataset is download from 
+%\url{http://www.amstat.org/publications/jse/datasets/body.dat.txt}
+%}
 \keyword{datasets}

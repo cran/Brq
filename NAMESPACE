@@ -1,1 +1,2 @@
 exportPattern("^[[:alpha:]]+")
+importFrom(stats,rgamma,rchisq,rnorm,pnorm,qnorm,runif,"contrasts", "model.matrix", "model.response")
