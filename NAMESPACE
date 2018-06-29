@@ -1,2 +1,11 @@
 exportPattern("^[[:alpha:]]+")
-importFrom(stats,rgamma,rchisq,rnorm,pnorm,qnorm,runif,"contrasts", "model.matrix", "model.response")
+importFrom("stats","coef","quantile",rgamma,rchisq,rnorm,pnorm,qnorm,runif,"contrasts", "model.matrix", "model.response","model.frame","acf", "density", "ts.plot")
+importFrom("graphics", "hist", "lines", "par")
+
+## register S3 methods
+S3method(print, summary.Brq)
+S3method(summary, Brq)
+S3method(print, Brq)
+S3method(plot, Brq)
+S3method(Brq,formula)
+S3method(Brq,default)

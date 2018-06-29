@@ -1,35 +1,23 @@
-BALTrq <-
-function(formula,tau=0.5, runs=11000, burn=1000) {
+BALqr <-
+function(x, y, tau=0.5, runs=11000, burn=1000, thin=1) {
 
     #x:    matrix of predictors.
     #y:    vector of dependent variable. 
     #tau:  quantile level.
     #runs: the length of the Markov chain.
     #burn: the length of burn-in.
-    x=formula[3][[1]]
-    y=formula[2][[1]]
-    call <- match.call()
-    mf <- match.call(expand.dots = FALSE)
-    m <- match(c("formula"), names(mf), 0L)
-    mf <- mf[c(1L, m)]
-    mf[[1L]] <- as.name("model.frame")
-    mf <- eval(mf, parent.frame())
-    mt <- attr(mf, "terms")
+    #thin: thinning parameter of MCMC draws
 
-    y <- model.response(mf, "numeric")
-    x <- model.matrix(mt, mf, contrasts)
     x <- as.matrix(x)  
     if(ncol(x)==1) {x=x} else {
     x=x
     if (all(x[,2]==1)) x=x[,-2] }
 
+   
       # Calculate some useful quantities
-        n <- nrow(x)
-        p <- ncol(x)
-        n0 <- sum(y == 0)
-        id0 <- which(y == 0)
-        x0<- x[y == 0, ]
-        yt <- y
+        n  <- nrow(x)
+        p  <- ncol(x)
+        
       # check input
         if (tau<=0 || tau>=1) stop ("invalid tau:  tau should be >= 0 and <= 1. 
                \nPlease respecify tau and call again.\n")
@@ -52,14 +40,12 @@ function(formula,tau=0.5, runs=11000, burn=1000) {
         beta   = rep(1, p)
         s      = rep(1, p)
         v      = rep(1, n)
-        Lambda = rep(1, p)
+        Lambda2 = rep(1, p)
         sigma  = 1
 
       # Hyperparameters
         a = 0.1
         b = 0.1
-        c = 0.1
-        d = 0.1
 
       # Draw from inverse Gaussian distribution
         rInvgauss <- function(n, mu, lambda = 1){
@@ -74,60 +60,48 @@ function(formula,tau=0.5, runs=11000, burn=1000) {
 
       # Draw the latent variable v from inverse Gaussian distribution.
         lambda = 1/(2*sigma)
-        mu     = 1/(abs(yt - x%*%beta))
+        mu     = 1/(abs(y - x%*%beta))
         v      = c(1/rInvgauss(n, mu = mu, lambda = lambda))
       
       # Draw the latent variable s from inverse Gaussian distribution.
-        lambda= Lambda/sigma
-        mu    = sqrt(lambda/beta^2 )
+        lambda= Lambda2
+        mu    = sqrt(lambda/(beta^2/sigma) )
         s     =c(1/rInvgauss(p, mu = mu, lambda = lambda))
 
       # Draw sigma
-        shape =  a + p + 3/2*n 
-        rate  = sum( (yt - x%*%beta - xi*v)^2 / (4*v) )+zeta*sum(v) + sum(Lambda*s)/2 + b
+        shape =   p/2 + 3/2*n 
+        rate  = sum((y - x%*%beta - xi*v)^2 / (4*v) )+zeta*sum(v) + sum(beta^2/(2*s)) 
+        sigma = 1/rgamma(1, shape= shape, rate= rate)
 
       # Draw beta
-        if (all(x[,1]==1)){sigma = 1/rgamma(1, shape= shape, rate= 1/rate)
-        V=diag(1/(2*sigma*v))
-        varcov <- chol2inv(chol(t(x)%*%V%*%x + diag(1/s)) )
-        betam  <- varcov %*% t(x)%*%V %*% (yt-xi*v)
-        beta   <-betam+t(chol(varcov))%*%rnorm(p) }
-        else{sigma = 1/rgamma(1, shape= shape, rate= rate)
-        for (k in 1:p) {
-        Var    = ( sum(x[,k]^2/ (2* sigma * v)) + 1/s[k] )^(-1)
-        Mean   = sum( x[,k]*(yt - xi*v - x[,-k]%*%as.matrix(beta[-k]))/(2*sigma*v) ) * Var
-        beta[k]= rnorm(1, mean= Mean, sd=sqrt(Var))
-    }}
+        V=diag(1/(2*v))
+        invA <- chol2inv(chol(t(x)%*%V%*%x + diag(1/s)) )
+        betam  <- invA%*%(t(x)%*%(V %*% (y-xi*v)))
+        varcov=sigma*invA
+        beta   <-betam+t(chol(varcov))%*%rnorm(p) 
+               
+      # Draw Lambda2
+        tshape  = 1 + a 
+        trate   = s/2 + b
+        Lambda2 = rgamma(p, shape=tshape, rate=trate)
 
-      # Draw Lambda
-       tshape  = 1 + c 
-        trate   = s/(2*sigma) + d
-        Lambda = rgamma(p, shape=tshape, rate=trate)
-        
-        v0 = v[id0]
-        Mu0 = x0 %*% beta + xi * v0
-        Sig0 = sqrt(2 * v0)
-        u0 = runif(n0)
-        xu0 = u0 * pnorm(0, Mu0, Sig0)
-        yt[id0] = sqrt(sigma) * qnorm(xu0, Mu0, Sig0)
 
       # Sort beta and sigma
         betadraw[iter,]  = beta
-        Lambdadraw[iter,]= Lambda
+        Lambdadraw[iter,]= Lambda2
         sigmadraw[iter,] = sigma
 }
         coefficients =apply(as.matrix(betadraw[-(1:burn), ]),2,mean)
         names(coefficients)=colnames(x)
         if (all(x[,1]==1))  names(coefficients)[1]= "Intercept"  
 
-        result <- list(beta = betadraw[seq(burn, runs, 5),],
-        lambda = Lambdadraw[seq(burn, runs, 5),],
-        sigma  <- sigmadraw[seq(burn, runs, 5),],
+        result <- list(beta = betadraw[seq(burn, runs, thin),],
+        lambda = Lambdadraw[seq(burn, runs, thin),],
+        sigma  <- sigmadraw[seq(burn, runs, thin),],
         coefficients=coefficients)
     
       return(result)
-      class(result) <- "BALTrq"
+      class(result) <- "BALqr"
       result
 }
-
 

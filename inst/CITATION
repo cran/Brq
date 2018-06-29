@@ -1,0 +1,19 @@
+bibentry(bibtype = "Article",
+  title        = "{Brq}: An R package for Bayesian Quantile Regression",
+  author       = c(person(given = c("Rahim"),
+                          family = "Alhamzawi",
+                          email = "rahim.alhamzawi@qu.edu.iq")),
+  journal      = "Working Paper",
+  year         = "2018",
+  volume       = "",
+  number       = "",
+  pages        = "",
+  doi          = "",
+
+  header       = "To cite bayesQR in publications use:",
+  textVersion  =
+  paste("Dries F. Benoit, Dirk Van den Poel (2018).",
+        "Brq: An R package for Bayesian Quantile Regression.",
+        "Working Paper")
+)
+

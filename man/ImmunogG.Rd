@@ -37,7 +37,7 @@ if (i==4) p = .75
 if (i==5) p = .95
 fit = Brq(y~X,tau=p,runs=400, burn=100)
 # Note: runs =11000 and burn =1000
-curve(fit$coef[1]+fit$coef[2]*x+fit$coef[3]*x^2,col="red",add=TRUE)
+curve(fit$coef[1]+fit$coef[2]*x+fit$coef[3]*x^2,col=i,add=TRUE)
 }
 
 
