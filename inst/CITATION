@@ -12,7 +12,7 @@ bibentry(bibtype = "Article",
 
   header       = "To cite bayesQR in publications use:",
   textVersion  =
-  paste("Dries F. Benoit, Dirk Van den Poel (2018).",
+  paste("Rahim Alhamzawi (2018).",
         "Brq: An R package for Bayesian Quantile Regression.",
         "Working Paper")
 )
