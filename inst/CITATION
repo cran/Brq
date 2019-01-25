@@ -10,7 +10,7 @@ bibentry(bibtype = "Article",
   pages        = "",
   doi          = "",
 
-  header       = "To cite bayesQR in publications use:",
+  header       = "To cite Brq in publications use:",
   textVersion  =
   paste("Rahim Alhamzawi (2018).",
         "Brq: An R package for Bayesian Quantile Regression.",

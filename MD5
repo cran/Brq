@@ -1,4 +1,4 @@
-a411fa64b3c532f39c91cde7b0cb94d3 *DESCRIPTION
+4bab71c3cef75ed3135ba1ae55dca7d3 *DESCRIPTION
 7292532a9d58384e1f1ba25020ec9079 *NAMESPACE
 c75942dd6bb8d9d7d7dff03186d9abec *R/Brq.R
 6ca206522098692e91b8ae20c676e014 *R/Brq.default.R
@@ -20,7 +20,7 @@ a4270ebd60a1e1a1a65a924d245673af *R/summary.Brq.R
 6b400b187c77a4201fa1ac36bff6a615 *data/USgirl.rda
 bfed6d45cc3153bf2854db7b5149b07e *data/salary.rda
 f36b5278e8ebea2aca19344b0e80dcab *data/wheat.rda
-6b9b5d1631f314cd3ddd3021a4512ac0 *inst/CITATION
+f57f08451ae17b2af67c3721f190da8b *inst/CITATION
 5550faee07c16a25667799ab8148f5b3 *man/Body.Rd
 49be067eef0dcef409eb28744f85951e *man/Brq1.Rd
 f51777497afe26c09dd5119fa841a1c5 *man/Brq2.Rd
