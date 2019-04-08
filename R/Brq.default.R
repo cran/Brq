@@ -1,12 +1,14 @@
 Brq.default <-
-function(x, y, tau=0.5, method=c("Bqr","BLqr","BALqr","Btqr","BLtqr","BALtqr"), left=0, runs=2000, burn=1000, thin=1, ...)
-{
+function(x, y, tau=0.5, method=c("Bqr","BBqr","BLqr","BLBqr","BALqr","Btqr","BLtqr","BALtqr"), left=0, runs=2000, burn=1000, thin=1, ...)
+{    
 x <- as.matrix(x)
 y <- as.numeric(y)
- method <- match.arg(method)
+ method <- match.arg(method,c("Bqr","BBqr","BLqr","BLBqr","BALqr","Btqr","BLtqr","BALtqr"))
  est= switch(method,
          Bqr   = Bqr(x,y,tau=tau, runs=runs, burn=burn, thin=thin),
+         BBqr   = BBqr(x,y,tau=tau, runs=runs, burn=burn, thin=thin),
          BLqr  = BLqr(x,y,tau=tau, runs=runs, burn=burn, thin=thin),
+         BLBqr  = BLqr(x,y,tau=tau, runs=runs, burn=burn, thin=thin),
          BALqr = BALqr(x,y,tau=tau, runs=runs, burn=burn, thin=thin),
          Btqr  = Btqr(x,y,tau=tau,left = 0,runs=runs, burn=burn, thin=thin),
          BLtqr = BLtqr(x,y,tau=tau, left = 0, runs=runs, burn=burn, thin=thin),
