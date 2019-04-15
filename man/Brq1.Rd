@@ -23,8 +23,8 @@ n <- 100
 x <- runif(n=n,min=0,max=5)
 y <- 1 + 1.5*x + .5*x*rnorm(n)
 Brq(y~x,tau=0.5,runs=2000, burn=500)
-Brq(y~x,tau=0.95,runs=2000, burn=500)
-
+fit=Brq(y~x,tau=0.5,runs=2000, burn=500)
+DIC(fit)
 
 # Example 2
 n <- 100

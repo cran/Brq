@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats","coef","quantile",rgamma,rchisq,rnorm,pnorm,qnorm,runif,"contrasts", "model.matrix", "model.response","model.frame","acf", "density", "ts.plot")
+importFrom("stats","coef","quantile",rgamma,rchisq,rnorm,pnorm,qnorm,dnorm,runif,"contrasts", "model.matrix", "model.response","model.frame","acf", "density", "ts.plot")
 importFrom("graphics", "hist", "lines", "par")
 
 ## register S3 methods

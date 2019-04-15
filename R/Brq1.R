@@ -26,6 +26,8 @@ function(x,y,tau=0.5, runs=11000, burn=1000, thin=1) {
 
       # Saving output matrices 
         betadraw  = matrix(nrow=runs, ncol=p)
+        MuY  = matrix(nrow=runs, ncol=n)
+        VarY  = matrix(nrow=runs, ncol=n)
         sigmadraw = matrix(nrow=runs, ncol=1)
 
       # Calculate some useful quantities
@@ -54,18 +56,22 @@ function(x,y,tau=0.5, runs=11000, burn=1000, thin=1) {
         v      = c(1/rInvgauss(n, mu = mu, lambda = lambda))
       
       # Draw sigma
+        Mu = x%*%beta + xi*v
         shape =   3/2*n 
-        rate  = sum((y - x%*%beta - xi*v)^2/(4*v))+zeta*sum(v) 
+        rate  = sum((y - Mu)^2/(4*v))+zeta*sum(v) 
         sigma = 1/rgamma(1, shape= shape, rate= rate)
 
       # Draw beta
-        V=diag(1/(2*sigma*v))
+        vsigma=2*sigma*v
+        V=diag(1/vsigma)
         varcov <- chol2inv(chol(t(x)%*%V%*%x))
         betam  <- varcov %*% (t(x)%*%(V %*% (y-xi*v)))
         beta   <-betam+t(chol(varcov))%*%rnorm(p)
 
       # Sort beta and sigma
         betadraw[iter,]  = beta
+        MuY[iter,  ]     = Mu
+        VarY[iter,  ]    = vsigma
         sigmadraw[iter,] = sigma
 }
         coefficients =apply(as.matrix(betadraw[-(1:burn), ]),2,mean)
@@ -73,7 +79,10 @@ function(x,y,tau=0.5, runs=11000, burn=1000, thin=1) {
         if (all(x[,1]==1))  names(coefficients)[1]= "Intercept"  
 
         result <- list(beta = betadraw[seq(burn, runs, thin),],
+                       MuY = MuY[seq(burn, runs, thin),],
+                       VarY = VarY[seq(burn, runs, thin),], 
         sigma  = sigmadraw[seq(burn, runs, thin),],
+        y=y,    
         coefficients=coefficients)
     
       return(result)
