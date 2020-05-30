@@ -3,25 +3,19 @@
 \docType{data}
 \title{Wheat Data}
 \description{
-This is a regression data set consisting of 584 observations on 11 variables is taken from the national program for the development of wheat cultivation in Iraq - Qadisiyah governorate branch (2017). The outcome of interest in this dataset is the percentage increase in wheat yield per dunam (2500 square meters).
-}
+This is a regression subsample data set consisting of 113 observations on 6 variables is taken from the national program for the development of wheat cultivation in Iraq - Qadisiyah governorate branch (2017). The complete data set was first analyzed by Hilali (2019). The outcome of interest in this dataset is the percentage increase in wheat yield per dunam (2500 square meters).}
 \usage{data("wheat")}
 \format{
-  A data frame with 584 observations on the following 11 variables.
+  A data frame with 113 observations on the following 6 variables.
   \describe{
-    \item{\code{y}}{The percentage increase in wheat yield per dunam (2500 square meters).
-}
-    \item{\code{U}}{Fertilizer urea (a numeric variable coding the quantity of fertilizer in kilogram).}
-    \item{\code{Ds}}{The date of sowing wheat seeds (a numeric variable coding date: 1 the ideal date, 2 early date, 3 late date).}
-    \item{\code{Qs}}{ The quantity of sowing wheat seeds (a numeric variable coding the quantity of seeds in kilogram).}
-    \item{\code{LT}}{The laser field leveling technique (a numeric variable coding technique: 2 if there are used this technique; 1 otherwise; "LT").}
-    \item{\code{NPK}}{The fertilize the field with compound fertilizers (a numeric variable coding the quantity of fertilizer in kilogram).}
-    \item{\code{SMT}}{Seed sowing machine technique (a numeric variable coding the seed sowing machine technique: 2 if there are used this technique; 1 otherwise).}
-    \item{\code{SC}}{ Planting  mung bean crop (a numeric variable coding type: 2 planting mung bean, 1 otherwise).}
-    \item{\code{H}}{Herbicide for weed control in crops (a numeric variable coding the quantity of herbicide in milliliter).}
-    \item{\code{K}}{High potassium fertilizer for crops (a numeric variable coding the quantity of fertilizer in kilogram).}
-    \item{\code{ME}}{Microelement fertilizer (numeric variable coding the quantity of fertilizer in gram).}
+    \item{\code{y}}{a numeric vector}
+    \item{\code{U}}{a numeric vector}
+    \item{\code{Qs}}{a numeric vector}
+    \item{\code{H}}{a numeric vector}
+    \item{\code{K}}{a numeric vector}
+    \item{\code{ME}}{a numeric vector}
   }
 }
-
+\references{Abbas, H. K. and Taher, R. J. (2019). Bayesian adaptive lasso tobit regression. \emph{Journal of Al-Qadisiyah for Computer Science and Mathematics}, 110 (1). <doi:10.29304/jqcm.2019.11.1.471>
+}
 \keyword{datasets}

@@ -1,13 +1,13 @@
 Package: Brq
 Type: Package
 Title: Bayesian Analysis of Quantile Regression Models
-Version: 2.5
-Date: 2019-04-13
+Version: 3.0
+Date: 2020-05-30
 Author: Rahim Alhamzawi  
 Maintainer: Rahim Alhamzawi  (University of Al-Qadisiyah) <rahim.alhamzawi@qu.edu.iq>
 Description: Bayesian estimation and variable selection for quantile regression models.
-License: GPL (>= 2)
+License: GPL (>= 3)
 NeedsCompilation: no
-Packaged: 2019-04-13 04:31:12 UTC; Rahim
+Packaged: 2020-05-30 04:37:23 UTC; Rahim
 Repository: CRAN
-Date/Publication: 2019-04-15 18:25:39 UTC
+Date/Publication: 2020-05-30 05:00:03 UTC

@@ -18,8 +18,7 @@ et al. (1983) and used in Keming et al. (2003).
  in preschool children measured by laser nephelometry: reference ranges for IgG, IgA and IgM.  J. Clin. Path., 36, 1193-1196.
 }
 \references{
-[1] Yu, K., Lu, Z., & Stander, J. (2003). Quantile regression: applications and current research areas. Journal of the Royal Statistical Society:
- Series D (The Statistician), 52(3), 331-350.?
+[1] Yu, K., Lu, Z., & Stander, J. (2003). Quantile regression: applications and current research areas. Journal of the Royal Statistical Society:Series D (The Statistician), 52(3), 331-350.
 }
 \examples{
 data(ImmunogG)
